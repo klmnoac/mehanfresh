@@ -92,22 +92,28 @@ const firebaseConfig = {
   let cameraStream = null;
   
   // For simplicity a dummy scan function (replace with real QR code library integration)
-  function startScan(callback){
-    cameraSection.hidden = false;
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
-      .then(stream => {
-        cameraStream = stream;
-        video.srcObject = stream;
-        // Simulate scanning: after 3 seconds, take a snapshot and return dummy qr:
-        setTimeout(() => {
-          callback("DUMMYQR");
-          stopScan();
-        }, 3000);
-      })
-      .catch(err => {
-        console.error("Camera error:", err);
-      });
-  }
+function startScan(callback) {
+  cameraSection.hidden = false;
+
+  const html5QrCode = new Html5Qrcode("camera-section");
+  html5QrCode.start(
+    { facingMode: "environment" },
+    { fps: 10, qrbox: 250 },
+    (decodedText) => {
+      console.log("QR Code detected:", decodedText);
+      callback(decodedText);
+      html5QrCode.stop();
+      cameraSection.hidden = true;
+    },
+    (error) => {
+      console.warn(`QR scan error: ${error}`);
+    }
+  ).catch((err) => {
+    console.error("Camera error:", err);
+    cameraSection.hidden = true;
+  });
+}
+
   
   function stopScan(){
     if(cameraStream){
