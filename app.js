@@ -42,6 +42,24 @@ request.onsuccess = (event) => {
   loadDashboardData();
   loadCustomerList();
 };
+import * as qrcodegen from "./qrcodegen.js"; // Adjust path as needed
+
+// Create a QR Code
+const qr = qrcodegen.QrCode.encodeText("Hello, World!", qrcodegen.QrCode.Ecc.MEDIUM);
+
+// Render to HTML canvas
+const size = qr.size;
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = size;
+canvas.height = size;
+
+for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+        ctx.fillStyle = qr.getModule(x, y) ? "black" : "white";
+        ctx.fillRect(x, y, 1, 1);
+    }
+}
 
 // Simulate initial data: 5 customers and 10 bottles
 function simulateInitialData(){
