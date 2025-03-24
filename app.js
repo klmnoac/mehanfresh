@@ -114,13 +114,7 @@ function startScan(callback) {
   });
 }
 
-  
-  function stopScan(){
-    if(cameraStream){
-      cameraStream.getTracks().forEach(track => track.stop());
-    }
-    cameraSection.hidden = true;
-  }
+
   
   closeCameraBtn.addEventListener("click", stopScan);
   
