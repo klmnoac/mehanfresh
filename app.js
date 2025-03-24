@@ -1,11 +1,12 @@
-// Firebase configuration and initialization (update with your own config)
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBpuBEVumunNdexlfEeH4yeZSqqUNbbhZE",
+  authDomain: "mehanfresh-f5daa.firebaseapp.com",
+  projectId: "mehanfresh-f5daa",
+  storageBucket: "mehanfresh-f5daa.firebasestorage.app",
+  messagingSenderId: "677869309187",
+  appId: "1:677869309187:web:3d993090a12ef857c1ed36",
+  measurementId: "G-W1ZV2BJD2X"
 };
 
 firebase.initializeApp(firebaseConfig);
